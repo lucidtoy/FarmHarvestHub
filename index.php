@@ -1,18 +1,75 @@
+fd
 <?php
 ob_start();
 session_start();
 require_once'imp/conn.php';
 require_once'imp/url_engine.php';
 require_once'imp/page_engine.php';
+require_once'imp/gui.php';
+require_once'imp/functions.php';
+
+
+		//incase url is null
+ 		if(!empty($_GET['p'])){
+  			$p = $_GET['p'];
+  		 }
+		 else{
+		 	$p ="HOME";
+		}
+		//incase url is null
+
+		//screened url/pages...incase 		
+		$links = url_engine($p);
+				
+	
+	
+	
+	//after the urls has been returned, the url engine has to take control
+	//populate the required pages and links controlling the application
+	//page contents is processed here
+		$page_info = page_engine($links[0]);
+		$page_url = $page_info[3];
+		$page_title = " Farm Harvest Hub | ".$page_info[2]." ";
+		$access_level = $page_info[5];
+
+headers();
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
 
-<body>
-</body>
-</html>
+
+
+<?php
+		//process page incase its a private page
+		if($access_level=="PRIVATE"){
+			//session
+			if(empty($_SESSION['user']['user_id'])){
+				include "pages/login.php";
+			}
+			else{
+				
+				//check if user has the priviledge to access page
+				$sql = "select * from resp_tbl where page_id='".$page_info[0]."' and user_type_id = '".$_SESSION['user']['user_type_id']."'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn) == 0){
+						include "pages/404.php";
+					}
+					else{
+						include $page_url;
+						//echo $page_url;
+					}
+				}
+				else{
+					include "pages/404.php";
+				}
+			}
+			
+		}else{	
+			include $page_url;
+			
+			//echo $page_url;
+		}
+		
+footers();
+?>		
