@@ -42,20 +42,20 @@ function headers(){
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+               <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>-->
+                <li><a href="?p=cart"><i class="fa fa-shopping-bag"></i> <span><?php echo $num_of_items; ?></span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span>$<?php echo $cart_total;?></span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
                 <img src="img/language.png" alt="">
                 <div>English</div>
                 <span class="arrow_carrot-down"></span>
-                <ul>
+                <!--<ul>
                     <li><a href="#">Spanis</a></li>
                     <li><a href="#">English</a></li>
-                </ul>
+                </ul>-->
             </div>
             <div class="header__top__right__auth">
                 <a href="#"><i class="fa fa-user"></i> Login</a>
@@ -64,7 +64,7 @@ function headers(){
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
+                <li><a href="?p=store">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -103,7 +103,7 @@ function headers(){
                     <div class="col-lg-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li><i class="fa fa-envelope"></i> support@farmharvesthub.com.au</li>
                                 <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
@@ -161,10 +161,10 @@ function headers(){
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <!--<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>-->
+                            <li><a href="?p=cart"><i class="fa fa-shopping-bag"></i> <span><?php global $num_of_items; echo $num_of_items;?></span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span>$<?php global $cart_total; echo $cart_total;?></span></div>
                     </div>
                 </div>
             </div>

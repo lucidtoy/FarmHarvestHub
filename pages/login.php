@@ -41,7 +41,7 @@ Error Page
 							//echo "$login[0] : $login[1]";
 							if($login[0]=='true'){
 								echo'<span class="alert-success" style="padding:5px;">'.$login[1].' <img width="50px" height="50px" src="img/load.gif" /></span>';
-								//echo"<meta http-equiv=\"refresh\" content=\"0;URL="."http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']."\" />";
+								echo"<meta http-equiv=\"refresh\" content=\"0;URL="."http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']."\" />";
 							}else{
 								echo'<span class="alert-danger" style="padding:5px;">'.$login[1].'</span>';
 							}
@@ -97,8 +97,10 @@ Error Page
 							$firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
 							$lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
 							$phone_number = mysqli_real_escape_string($conn,$_POST['phone_number']);
-							$register = register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_number);
-							//echo "$login[0] : $login[1]";
+							$user_type_id = mysqli_real_escape_string($conn,$_POST['user_type_id']);
+							$register = register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_number, $user_type_id);
+							var_dump($register);
+							//echo "$register[0] : $login[1]";
 							if($register[0]=='true'){
 								
 								//
@@ -111,6 +113,7 @@ Error Page
 							}
 							
 						}else{
+							//echo "default load no post<br/><br/><br/>";	
 							echo "<br/><br/><br/>";	
 						}
 						echo'</center>';
@@ -145,13 +148,28 @@ Error Page
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Phone Number" name="phone_number" type="phone" value="" required>
                                 </div>
+                                <div class="form-group">
+                                	<select name="user_type_id" class="form-control"   required>
+                                    	<option value="3" >User</option>
+                                        <option value="2" >Farmer</option>
+                                    </select>
+                                   
+                                   <!-- <input class="form-control" placeholder="Phone Number" name="phone_number" type="phone" value="" required>-->
+                                </div>
+                                 
+                                 <div class="form-group">
+                                 
                                 <div class="checkbox">
+                                
                                     <label>
+                                    <br/><br/>
                                         <input name="terms" type="checkbox" value="I Agree to Terms and Conditions" required>I Agree to Terms and Conditions
                                     </label>
                                 </div>
+                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input name="register" type="submit" class="btn btn-lg btn-danger btn-block" value="Register" />
+                                <input name="register" type="submit" class="site-btn" value="Register" />
+                                <!--class="btn btn-lg btn-danger btn-block"-->
                             </fieldset>
                         </form>
                     </div>

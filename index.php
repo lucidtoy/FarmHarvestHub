@@ -1,4 +1,3 @@
-fd
 <?php
 ob_start();
 session_start();
@@ -22,7 +21,9 @@ require_once'imp/functions.php';
 		$links = url_engine($p);
 				
 	
+	$num_of_items = calc_num_of_items();
 	
+	$cart_total = calc_total_cart() ;
 	
 	//after the urls has been returned, the url engine has to take control
 	//populate the required pages and links controlling the application

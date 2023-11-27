@@ -24,21 +24,17 @@ function login($email , $password){
 							$_SESSION['user']['password'] = $rw['password'];
 							$_SESSION['user']['firstname'] = $rw['firstname'];
 							$_SESSION['user']['lastname'] = $rw['lastname'];
-							$_SESSION['user']['phone_number'] = $rw['phone_number'];
+							$_SESSION['user']['phone_number'] = $rw['phone'];
 							$_SESSION['user']['address'] = $rw['address'];
-							$_SESSION['user']['area'] = $rw['area'];
 							$_SESSION['user']['city'] = $rw['city'];
 							$_SESSION['user']['state'] = $rw['state'];
 							$_SESSION['user']['user_type_id'] = $rw['user_type_id'];
-							$_SESSION['user']['login_count'] = ($rw['login_count'] +1 );
-							$_SESSION['user']['status'] = $rw['status'];
-							$_SESSION['user']['logged_on'] = $rw['logged_on'];
-							$_SESSION['user']['last_logon_date'] = $rw['last_logon_date'];
-							$_SESSION['user']['created_by'] = $rw['created_by'];
-							$_SESSION['user']['creation_date'] = $rw['creation_date'];
+							$_SESSION['user']['status'] = $rw['user_status'];
+							$_SESSION['user']['last_logon_date'] = $rw['last_logon'];
 							
 							
-							$sql2 = "UPDATE `dhc_user_tbl` SET `login_count`='".$_SESSION['user']['login_count']."', `logged_on`='Y',`last_logon_date`='".date("Y-m-d H:i:s")."' WHERE email='".$_SESSION['user']['email']."'";
+							
+							$sql2 = "UPDATE `dhc_user_tbl` SET `last_logon`='".date("Y-m-d H:i:s")."' WHERE email='".$_SESSION['user']['email']."'";
 							
 							$xsql2 = mysqli_query($conn,$sql2);
 							
@@ -74,11 +70,11 @@ function register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_
 		$xsql = mysqli_query($conn,$sql);
 		if($xsql){
 			if(mysqli_affected_rows($conn)==0){
-				
-					"INSERT INTO `users`(`email`, `phone`, `password`, `firstname`, `lastname`,`last_logon`, `user_status`,`user_type_id`, 
+				$status[1] = "User does not exist yet";
+					$ins = "INSERT INTO `users`(`email`, `phone`, `password`, `firstname`, `lastname`,`last_logon`, `user_status`,`user_type_id`) 
 					VALUES ('". strtolower($email)."' , '".$phone_number."' , '".md5($cpassword)."' , '". ucfirst(strtolower($firstname))."', '".ucfirst(strtolower($lastname))."' ,  '".date("Y-m-d H:i:s")."' , 'ACTIVE', '".$user_type_id."') ";
 				
-				//$ins = "INSERT INTO `users`(`email`, `password`, `firstname`, `lastname`, `phone_number`, `user_type_id`, `login_count`, `status`, `email_confirmed`, `logged_on`, `last_logon_date`, `code`, `created_by`, `creation_date`) VALUES ('". strtolower($email)."' , '".md5($cpassword)."' , '". ucfirst(strtolower($firstname))."', '".ucfirst(strtolower($lastname))."' , '".$phone_number."' , '2' , '0' , 'ACTIVE' , 'N' , 'N' , '0000-00-00 00:00:00' , '".md5($email)."' , '0' , '".date("Y-m-d H:i:s")."')";
+				$status[2] = $ins;
 				
 				//$status[0] = true;
 				//$status[1] = "User Successfully Registered";
@@ -91,12 +87,17 @@ function register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_
 			else{
 				$status[0] = false;
 				$status[1] = "Email already registered, please login / recover password";
+				$status[2] = $ins;
 			}
+		}
+		else{
+			$status[1] = "trying to select user failed";
+			$status[2] = "User does not exist yet";
 		}
 	}
 	else{
 		$status[0] = false;
-		$status[1] = "Both Password(s) must be the same";
+		$status[1] = $sql;
 	}
 
 return $status;		
@@ -105,6 +106,9 @@ return $status;
 end register function
 */
 
+/*
+logout function
+*/
 function logout($user_id){
 	global $conn;
 	$sql2 = "UPDATE `users` SET 1=1 WHERE user_id='".$user_id."'";
@@ -117,6 +121,66 @@ function logout($user_id){
 									
 								}
 }
+/*
+end logout function
+*/
 
+/*
+calculate number of items in cart
+*/
+function calc_num_of_items(){
+	
+		$numofitems = 0;
+		$totalamount = 0;
+if(!isset($_SESSION['cart'])){ $numofitems=0.00;}
+else{
+	  foreach($_SESSION['cart'] as $product_id => $valx){
+		  
+		  foreach($_SESSION['cart'][$product_id] as $size=>$quantity){
+			  $product_id;
+			  $size;
+			  $quantity;
+			  $numofitems = $numofitems + $quantity;
+			  
+		  }
+		  //foreach($product_id as $val => $size){
+			  
+			  //echo $val .' ' .$size;
+		  //}
+	  }
+}
+	 return $numofitems;
+}
+
+
+function calc_total_cart(){
+	global $conn;
+$numofitems = 0;
+$totalamount=0;
+
+if(!isset($_SESSION['cart'])){ $totalamount=0.00;}
+else{
+foreach($_SESSION['cart'] as $product_id => $valx){
+		  
+		  foreach($_SESSION['cart'][$product_id] as $size=>$quantity){
+			  //$prod_det = fetch_prod($product_id);
+			  $product_id;
+			  $sql = "select product_price from product where product_id='".$product_id."'";
+			  $xsql = mysqli_query($conn,$sql);
+			  $size;
+			  $quantity;
+			  $numofitems = $numofitems + $quantity;
+			  if($xsql){
+					while($rw=mysqli_fetch_array($xsql)){
+							$totalamount = $totalamount + ($rw['prod_price'] *$quantity);		
+					} 
+				}
+			  
+		  }
+
+}
+}
+return number_format((float)($totalamount), 2, '.', '');	
+}
 
 ?>
