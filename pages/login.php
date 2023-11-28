@@ -39,6 +39,7 @@ Error Page
 							//$login[0] = false;
 							//$login[1] = "Invalid username";
 							//echo "$login[0] : $login[1]";
+							//var_dump($login);
 							if($login[0]=='true'){
 								echo'<span class="alert-success" style="padding:5px;">'.$login[1].' <img width="50px" height="50px" src="img/load.gif" /></span>';
 								echo"<meta http-equiv=\"refresh\" content=\"0;URL="."http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']."\" />";

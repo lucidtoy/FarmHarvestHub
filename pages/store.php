@@ -18,17 +18,18 @@ Home Page
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                        <?php
+						
+						
+							$cat = category();
+							//var_dump($cat);
+							
+							if($cat[0]){
+								foreach($cat[2] as $val){
+									echo '<li><a href="'.$val['category_id'].'">'.$val['category_name'].'</a></li>';
+								}
+							}
+						?>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +50,7 @@ Home Page
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+61 42.670.0655</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>

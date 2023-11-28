@@ -6,7 +6,7 @@ function login($email , $password){
 	global $conn;
 	$status[0] = false;
 	$status[1] = "";
-						$status[1] = "Invalid Username and / or Password";
+						//$status[1] = "Invalid Username and / or Password";
 	$sql = "select * from users where email='".$email."' and password='".md5($password)."' and ( user_status='ACTIVE')";
 				$xsql = mysqli_query($conn,$sql);
 				
@@ -14,7 +14,8 @@ function login($email , $password){
 				if($xsql){
 					if(mysqli_affected_rows($conn)==0){
 						$status[0] = false;
-						$status[1] = "Invalid Username and / or Password ";
+						$status[1] = "Invalid Username and / or Password 1";
+						$status[2] = $sql;
 					}
 					else{
 						while($rw = mysqli_fetch_array($xsql)){
@@ -34,13 +35,14 @@ function login($email , $password){
 							
 							
 							
-							$sql2 = "UPDATE `dhc_user_tbl` SET `last_logon`='".date("Y-m-d H:i:s")."' WHERE email='".$_SESSION['user']['email']."'";
+							$sql2 = "UPDATE `users` SET `last_logon`='".date("Y-m-d H:i:s")."' WHERE email='".$_SESSION['user']['email']."'";
 							
 							$xsql2 = mysqli_query($conn,$sql2);
 							
 							if($xsql2){
 								$status[0] = true;
 								$status[1] = "loggon on successful";
+								$status[2] = $sql2;
 							}
 						}
 					}
@@ -183,4 +185,42 @@ foreach($_SESSION['cart'] as $product_id => $valx){
 return number_format((float)($totalamount), 2, '.', '');	
 }
 
+/**
+category function
+**/
+function category(){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from product_category";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No category";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['category_id'] = $rw['category_id'];
+							$status[2][$count]['category_name'] = $rw['category_name'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error";
+				}
+	return $status;
+}
+/**
+end category function
+**/
 ?>

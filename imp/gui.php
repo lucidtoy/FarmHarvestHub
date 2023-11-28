@@ -126,7 +126,16 @@ function headers(){
                                 </ul>-->
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="?p=account"><i class="fa fa-user"></i> Login / Register</a>
+                            <?php
+								if(isset($_SESSION['user']['user_id'])){
+									echo '<a href="?p=logout"><i class="fa fa-user"></i>('. $_SESSION['user']['firstname'] . ') Logout </a>';
+								}
+								else{
+									echo '<a href="?p=account"><i class="fa fa-user"></i> Login / Register</a>';	
+								}
+							
+							?>
+                                
                             </div>
                         </div>
                     </div>
