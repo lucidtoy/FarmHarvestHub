@@ -124,11 +124,17 @@ function headers(){
                                     <li><a href="#">Spanis</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>-->
+                                <?php
+									if(isset($_SESSION['user']['user_id'])){
+									echo '<a href="?p=account"><i class="fa fa-user"></i>('. $_SESSION['user']['firstname'] . ')</a>'; 
+									
+								}
+								?>
                             </div>
                             <div class="header__top__right__auth">
                             <?php
 								if(isset($_SESSION['user']['user_id'])){
-									echo '<a href="?p=logout"><i class="fa fa-user"></i>('. $_SESSION['user']['firstname'] . ') Logout </a>';
+									echo '<a href="?p=logout"><i class="fa fa-user"></i> Logout </a>';
 								}
 								else{
 									echo '<a href="?p=account"><i class="fa fa-user"></i> Login / Register</a>';	
@@ -152,7 +158,7 @@ function headers(){
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="?p=HOME">Home</a></li>
+                            <li><a href="?p=home">Home</a></li>
                             <li><a href="?p=store">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">

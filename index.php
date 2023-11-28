@@ -13,7 +13,7 @@ require_once'imp/functions.php';
   			$p = $_GET['p'];
   		 }
 		 else{
-		 	$p ="HOME";
+		 	$p ="home";
 		}
 		//incase url is null
 

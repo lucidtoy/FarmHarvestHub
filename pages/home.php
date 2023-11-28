@@ -26,7 +26,7 @@ Home Page
 							
 							if($cat[0]){
 								foreach($cat[2] as $val){
-									echo '<li><a href="'.$val['category_id'].'">'.$val['category_name'].'</a></li>';
+									echo '<li><a href="?p=store&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
 								}
 							}
 						?>
@@ -37,12 +37,12 @@ Home Page
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="?p=search">
+                             <form method="post" action="?p=search">
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input name="search" type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>

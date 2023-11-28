@@ -29,7 +29,7 @@ this is the Dashboard account page
             <div class="row">
 
 							<div class="row">
-								<div class="col-lg-6 col-md-6" style="border:0px solid #000;">
+								<div class="col-lg-12 col-md-12" style="border:0px solid #000;">
                                 	<h2><?php echo $page_info[2]; ?></h2>
                                     <p>
                     				<?php
