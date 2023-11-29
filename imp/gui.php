@@ -139,8 +139,8 @@ function headers(){
                     <nav class="header__menu">
                         <ul>
                             <li><a href="?p=home">Home</a></li>
-                            <li><a href="?p=store">Shop</a></li>
-                            <!--<li><a href="#">Pages</a>
+                            <!--<li><a href="?p=store">Shop</a></li>
+                            <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
