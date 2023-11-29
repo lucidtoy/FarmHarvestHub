@@ -235,12 +235,12 @@ function footers(){
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
+                       <!-- <h6>Join Our Newsletter Now</h6>
                         <p>Get E-mail updates about our latest shop and special offers.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
+                        </form>-->
                         <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
@@ -255,7 +255,7 @@ function footers(){
                     <div class="footer__copyright">
                         <div class="footer__copyright__text"><p>
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </p></div>
-                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                        <div class="footer__copyright__payment"><!--<img src="img/payment-item.png" alt="">--></div>
                     </div>
                 </div>
             </div>
