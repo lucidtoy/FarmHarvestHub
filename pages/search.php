@@ -44,7 +44,7 @@ this is the search page
 								</div>
                                 <!--end of the product description col-lg-6 col-md-6-->
                                 
-                                <div class="col-lg-6 col-md-6" style="border:0px solid #000;">
+                                <div class="col-lg-12 col-md-12" style="border:0px solid #000;">
 
                                     
                                     
