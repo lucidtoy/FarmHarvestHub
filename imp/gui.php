@@ -3,7 +3,7 @@
 function headers(){
 	?>
     <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -43,9 +43,9 @@ function headers(){
         <div class="humberger__menu__cart">
             <ul>
                <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>-->
-                <li><a href="?p=cart"><i class="fa fa-shopping-bag"></i> <span><?php echo $num_of_items; ?></span></a></li>
+                <li><a href="?p=cart"><i class="fa fa-shopping-bag"></i> <span><?php global $num_of_items; echo $num_of_items; ?></span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$<?php echo $cart_total;?></span></div>
+            <div class="header__cart__price">item: <span>$<?php global $cart_total; echo $cart_total;?></span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -64,7 +64,7 @@ function headers(){
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="?p=store">Shop</a></li>
+                <li><a href="?p=farms">Farms</a></li>
                <!-- <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -139,7 +139,8 @@ function headers(){
                     <nav class="header__menu">
                         <ul>
                             <li><a href="?p=home">Home</a></li>
-                            <!--<li><a href="?p=store">Shop</a></li>
+                            <li><a href="?p=farms">Farms</a></li>
+                            <!--
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>

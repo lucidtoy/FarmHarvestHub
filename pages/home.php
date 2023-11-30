@@ -53,7 +53,7 @@ Home Page
                             <span>HARVEST HUB Australia</span>
                             <h2>Farm Produce <br />100% Organic</h2>
                             <p>Hub For Farmers and Customers</p>
-                            
+                            <a class="site-btn" href="?p=farms">Go to Farms</a>
                         </div>
                     </div>
                 </div>

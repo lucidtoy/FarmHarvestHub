@@ -315,4 +315,88 @@ function get_farm($farm_id){
 /**
 end get farm function
 **/
+
+/**
+get_product_cat($val['farm_id']);
+**/
+function get_product_cat_id($farm_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select distinct category_id from  product where store_id='".$farm_id."'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Farm";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['category_id'] = $rw['category_id'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error";
+				}
+	return $status;
+}
+/**
+end get_product_cat($val['farm_id']);
+**/
+
+
+
+/**
+get_products($farm_id) function
+**/
+function get_products($farm_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from product where store_id='".$farm_id."'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Farm";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['product_id'] = $rw['product_id'];
+							$status[2][$count]['product_name'] = $rw['product_name'];
+							$status[2][$count]['product_description'] = $rw['product_description'];
+							$status[2][$count]['product_price'] = $rw['product_price'];
+							$status[2][$count]['category_id'] = $rw['category_id'];
+							$status[2][$count]['store_id'] = $rw['store_id'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error";
+				}
+	return $status;
+	
+}
+/**
+end get_products($farm_id) function
+**/
 ?>
