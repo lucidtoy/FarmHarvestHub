@@ -3,7 +3,7 @@ date_default_timezone_set('Etc/GMT-1');
 define("DB_SERVER", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define("DB_NAME", "FHH");
+define("DB_NAME", "HHA");
 define("DB_DATE", date('Y-m-d'));
 define("DOMAIN", "");
 define("ORG_ID", "1");

@@ -228,7 +228,7 @@ end category function
 
 
 /**
-store function
+farm function
 **/
 function farm(){
 	global $conn;
@@ -267,6 +267,52 @@ function farm(){
 	return $status;
 }
 /**
-end store function
+end farm function
+**/
+
+
+
+
+/**
+get farm function
+**/
+function get_farm($farm_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from farm where farm_id='".$farm_id."'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Farm";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['farm_id'] = $rw['farm_id'];
+							$status[2][$count]['farm_name'] = $rw['farm_name'];
+							$status[2][$count]['address'] = $rw['address'];
+							$status[2][$count]['email'] = $rw['email'];
+							$status[2][$count]['phone'] = $rw['phone'];
+							$status[2][$count]['admin_id'] = $rw['admin_id'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error";
+				}
+	return $status;
+}
+/**
+end get farm function
 **/
 ?>
