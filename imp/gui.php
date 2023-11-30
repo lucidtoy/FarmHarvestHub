@@ -187,7 +187,7 @@ function footers(){
                 <div class="col-lg-12">
                     <div class="footer__copyright">
                         <div class="footer__copyright__text"><p>
-  <?php echo 'copyright &copy;'. date("Y") .'| Farm harvest hub'; ?></p></div>
+  <?php echo 'copyright &copy;'. date("Y") .'| Harvest Hub Australia'; ?></p></div>
                        
                     </div>
                 </div>
