@@ -50,7 +50,7 @@ Home Page
                     </div>
                     <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                         <div class="hero__text">
-                            <span>FARM HARVEST HUB</span>
+                            <span>HARVEST HUB Australia</span>
                             <h2>Farm Produce <br />100% Organic</h2>
                             <p>Hub For Farmers and Customers</p>
                             
@@ -62,7 +62,7 @@ Home Page
     </section>
     <!-- Hero Section End -->
 
-    <!-- Categories Section Begin -->
+    <!-- Store Section Begin -->
     <section class="categories">
         <div class="container">
             <div class="row">
@@ -70,15 +70,15 @@ Home Page
                 	<?php
 						
 						
-							$store = store();
+							$farm = farm();
 							//var_dump($cat);
 							
-							if($cat[0]){
-								foreach($store[2] as $val){
+							if($farm[0]){
+								foreach($farm[2] as $val){
 									//echo '<li><a href="?p=store&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
 									echo '<div class="col-lg-3">
-                        					<div class="categories__item set-bg" data-setbg="img/store/'.$val['store_id'].'.png">
-                           					 <h5><a href="?p=store&store='.$val['store_id'].'">'.$val['store_name'].'</a></h5>
+                        					<div class="categories__item set-bg" data-setbg="img/farm/'.$val['farm_id'].'.png">
+                           					 <h5><a href="?p=farm&farm='.$val['farm_id'].'">'.$val['farm_name'].'</a></h5>
                        						</div>
                     					</div>';
 								}
@@ -89,6 +89,6 @@ Home Page
             </div>
         </div>
     </section>
-    <!-- Categories Section End -->
+    <!-- Store Section End -->
 
     <br/><br/>

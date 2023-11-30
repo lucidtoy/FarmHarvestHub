@@ -33,8 +33,10 @@ this is the search page
                                 	<h2><?php echo $page_info[2]; ?></h2>
                                     <p>
                     				<?php
-										echo 'search results for ' . $_POST['search'] . '...';
 									
+										if(isset($_POST['search'])){
+											echo 'search results for ' . $_POST['search'] . '...';
+										}
 									
 									
 									?></p>

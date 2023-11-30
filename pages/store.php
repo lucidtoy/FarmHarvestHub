@@ -15,7 +15,7 @@ Home Page
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>All Categories</span>
                         </div>
                         <ul>
                         <?php
@@ -45,15 +45,7 @@ Home Page
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+61 42.670.0655</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -67,10 +59,10 @@ Home Page
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2><?php ?></h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
+                            <a href="?p=home">Home</a>
+                            <span>Farm</span>
                         </div>
                     </div>
                 </div>

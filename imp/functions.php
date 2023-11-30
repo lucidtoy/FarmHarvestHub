@@ -230,19 +230,19 @@ end category function
 /**
 store function
 **/
-function store(){
+function farm(){
 	global $conn;
 	$status[0] = false;
 	$status[1] = "";
 						//$status[1] = "Invalid Username and / or Password";
-	$sql = "select * from store";
+	$sql = "select * from farm";
 				$xsql = mysqli_query($conn,$sql);
 				
 				
 				if($xsql){
 					if(mysqli_affected_rows($conn)==0){
 						$status[0] = false;
-						$status[1] = "No category";
+						$status[1] = "No Farm";
 					}
 					else{
 						$count = 0;
@@ -250,8 +250,8 @@ function store(){
 						$status[1] = "success";
 						while($rw=mysqli_fetch_array($xsql)){
 							
-							$status[2][$count]['store_id'] = $rw['store_id'];
-							$status[2][$count]['store_name'] = $rw['store_name'];
+							$status[2][$count]['farm_id'] = $rw['farm_id'];
+							$status[2][$count]['farm_name'] = $rw['farm_name'];
 							$status[2][$count]['address'] = $rw['address'];
 							$status[2][$count]['email'] = $rw['email'];
 							$status[2][$count]['phone'] = $rw['phone'];
