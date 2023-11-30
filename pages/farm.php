@@ -138,9 +138,9 @@ Home Page
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="#">'.$val2['product_name'].'</a></h6>
-                                    <h5>$30.00</h5>
+                                    <h5>$'.$val2['product_price'].'</h5>
 									<form action="" method="post">
-									<input name="addtocart" type="hidden" value="'.$val2['product_id'].'" />
+									<input name="prodid" type="hidden" value="'.$val2['product_id'].'" />
 									<input name="addtocart" type="submit" class="site-btn" value="Add to Cart" />
 									</form>
                                 </div>
@@ -151,12 +151,7 @@ Home Page
 					?>
                        
                     </div>
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    
                 </div>
             </div>
         </div>

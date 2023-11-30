@@ -19,7 +19,8 @@ require_once'imp/functions.php';
 
 		//screened url/pages...incase 		
 		$links = url_engine($p);
-				
+		
+	add_to_cart();		
 	
 	$num_of_items = calc_num_of_items();
 	

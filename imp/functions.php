@@ -134,21 +134,14 @@ function calc_num_of_items(){
 	
 		$numofitems = 0;
 		$totalamount = 0;
-if(!isset($_SESSION['cart'])){ $numofitems=0.00;}
+if(!isset($_SESSION['cart'])){ $numofitems=0;}
 else{
-	  foreach($_SESSION['cart'] as $product_id => $valx){
-		  
-		  foreach($_SESSION['cart'][$product_id] as $size=>$quantity){
-			  $product_id;
-			  $size;
-			  $quantity;
+	
+	//var_dump($_SESSION['cart']);
+	  foreach($_SESSION['cart'] as $product_id => $quantity){
+			  
 			  $numofitems = $numofitems + $quantity;
 			  
-		  }
-		  //foreach($product_id as $val => $size){
-			  
-			  //echo $val .' ' .$size;
-		  //}
 	  }
 }
 	 return $numofitems;
@@ -164,17 +157,16 @@ if(!isset($_SESSION['cart'])){ $totalamount=0.00;}
 else{
 foreach($_SESSION['cart'] as $product_id => $valx){
 		  
-		  foreach($_SESSION['cart'][$product_id] as $size=>$quantity){
+		  foreach($_SESSION['cart'] as $product_id => $quantity){
 			  //$prod_det = fetch_prod($product_id);
 			  $product_id;
 			  $sql = "select product_price from product where product_id='".$product_id."'";
 			  $xsql = mysqli_query($conn,$sql);
-			  $size;
 			  $quantity;
 			  $numofitems = $numofitems + $quantity;
 			  if($xsql){
 					while($rw=mysqli_fetch_array($xsql)){
-							$totalamount = $totalamount + ($rw['prod_price'] *$quantity);		
+							$totalamount = $totalamount + ($rw['product_price'] *$quantity);		
 					} 
 				}
 			  
@@ -398,5 +390,60 @@ function get_products($farm_id){
 }
 /**
 end get_products($farm_id) function
+**/
+
+/**
+add to cart function;
+**/
+function add_to_cart(){
+	if(isset($_POST['addtocart'])){
+		
+		
+		
+			if(!empty($_POST['prodid'])){
+					$product_id = $_POST['prodid'];
+					$quantity = 1;
+					
+					//$stat = calc_remaining_prod($product_id);
+					$stat[0] =true;
+					$stat[1] = $quantity +1;
+					
+					if($stat[0]==true and $stat[1] >= $quantity){
+						
+											if(isset($_SESSION['cart'][$product_id])){
+											//if the product and size has been formally selected
+												$temp = $_SESSION['cart'][$product_id] + $quantity;
+												if($temp <= $stat[1]){
+							
+												$_SESSION['cart'][$product_id] = $_SESSION['cart'][$product_id] + $quantity;
+												}
+												//else{
+						
+												//}
+					
+											//end if the product and size has been formally selected					
+											}
+											else{
+													$_SESSION['cart'][$product_id] = $quantity ;	
+											
+												}
+												
+					}
+					else{
+						
+						if(isset($_SESSION['cart'][$product_id])){
+							$_SESSION['cart'][$product_id] = $_SESSION['cart'][$product_id] + $quantity;
+						}
+						else{
+							$_SESSION['cart'][$product_id] = $quantity ;	
+						}
+						//echo"stock is lesser than: ". $quantity;	
+					}
+		
+			}
+	}	
+}
+/**
+add to cart function;
 **/
 ?>
