@@ -67,6 +67,12 @@ function register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_
 	$status[0] = false;
 	$status[1] = "";
 	
+	if($user_type_id==2){
+		$user_status='ACTIVE';
+	}
+	else{
+		$user_status = 'PENDING';
+	}
 	if($cpassword == $vpassword){		
 		$sql = "select * from users where email='".$email."'";
 		$xsql = mysqli_query($conn,$sql);
@@ -373,6 +379,7 @@ function get_products($farm_id){
 							
 							$status[2][$count]['product_id'] = $rw['product_id'];
 							$status[2][$count]['product_name'] = $rw['product_name'];
+							$status[2][$count]['unit_of_measure'] = $rw['unit_of_measure'];
 							$status[2][$count]['product_description'] = $rw['product_description'];
 							$status[2][$count]['product_price'] = $rw['product_price'];
 							$status[2][$count]['category_id'] = $rw['category_id'];
@@ -402,7 +409,7 @@ function add_to_cart(){
 		
 			if(!empty($_POST['prodid'])){
 					$product_id = $_POST['prodid'];
-					$quantity = 1;
+					$quantity = $_POST['quantity'];
 					
 					//$stat = calc_remaining_prod($product_id);
 					$stat[0] =true;

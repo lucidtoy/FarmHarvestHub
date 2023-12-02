@@ -141,6 +141,14 @@ Home Page
                                     <h5>$'.$val2['product_price'].'</h5>
 									<form action="" method="post">
 									<input name="prodid" type="hidden" value="'.$val2['product_id'].'" />
+									<table align="center"><tr><td>
+									<select name="quantity">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select> &nbsp;</td><td> '.$val2['unit_of_measure'].'</td></tr></table><br/>
 									<input name="addtocart" type="submit" class="site-btn" value="Add to Cart" />
 									</form>
                                 </div>
