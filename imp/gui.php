@@ -247,9 +247,9 @@ function checkout(){
                                     </div>
                                     </div>
                                 </div>
-                                <div class="form-group"><br/>Billing:
+                                <div class="form-group"><br/>Payment: <img src="img/payment-item-card.png" />
                                 </div>
-                                <div class="row" style="border:0px solid #000;">
+                                <div class="row" style="border:0px solid #000;margin:10px;">
                                 
                                 
                                 
@@ -291,7 +291,7 @@ function checkout(){
 </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-left:5px;">
 <div class="form-group col-sm-4">
 <label for="ccmonth">Month</label><br/>
 <select name="ccmonth" class="form-control" id="ccmonth">
@@ -312,12 +312,12 @@ function checkout(){
 <div class="form-group col-sm-4">
 <label for="ccyear">Year</label><br/>
 <select name="ccyear" class="form-control" id="ccyear">
-<option value="2023">2023</option>
 <option value="2024">2024</option>
 <option value="2025">2025</option>
 <option value="2026">2026</option>
 <option value="2027">2027</option>
 <option value="2028">2028</option>
+<option value="2029">2029</option>
 </select>
 </div>
 <div class="col-sm-4">
@@ -426,4 +426,19 @@ echo"<div class=\"panel panel-default\" style='width:100%'>
             <!-- Shoing cart end-->";
 
 }
+
+
+function dash_url(){
+	echo '<ul>
+			<li><a href="?p=account">Accounts</a></li>';
+			
+			if($_SESSION['user']['user_type_id']==2){
+				echo '<li><a href="?p=fohistory">Farm Order History</a></li>';
+			}
+			
+			echo'<li><a href="?p=ohistory">Order History</a></li>
+			<li><a href="?p=cpassword">Change Password</a></li>
+			<li><a href="?p=logout">Logout</a></li>
+		</ul>';
+	}
 ?>

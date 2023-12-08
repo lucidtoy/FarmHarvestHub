@@ -453,4 +453,115 @@ function add_to_cart(){
 /**
 add to cart function;
 **/
+
+/**
+function gen_order_number($user_id){
+**/
+function gen_order_number($user_id){
+	
+	return 'HHA'. $user_id .time();
+
+}
+/**
+end function gen_order_number($user_id){
+**/
+
+/**
+function submit order
+**/
+function submit_order($order_number,$user_id,$farm_id,$address,$city,$state,$cardname,$card,$ccmonth,$ccyear, $cvv,$total_amount){
+	$status = 0;
+	global $conn;
+	$numofitems = 0;
+	$totalamount=0;
+	$sql = "INSERT INTO `orders` (`order_id`, `order_number`, `total_amount`, `ordered_from`, `ordered_by`, `ordered_at`, `order_status`, `shipping_address`, `shipping_city`, `shipping_state`, `credit_card`, `cc_month`, `cc_year`, `cvv`) VALUES (NULL, '".$order_number."', '".$total_amount."', '".$farm_id."', '".$user_id."', '".date("Y-m-d H:i:s")."', 'ORDERED', '".$address."', '".$city."', '".$state."', '".$card."', '".$ccmonth."', '".$ccyear."', '".$cvv."');";
+	
+	
+	$xsql = mysqli_query($conn, $sql);
+	if($xsql){
+		$id = mysqli_insert_id($conn);
+		
+		
+		
+		
+		  
+		  foreach($_SESSION['cart'] as $product_id => $quantity){
+			  //$prod_det = fetch_prod($product_id);
+			  $product_id;
+			  $sql1 = "select product_price from product where product_id='".$product_id."'";
+			  $xsql1 = mysqli_query($conn,$sql1);
+			  $quantity;
+			  $numofitems = $numofitems + $quantity;
+			  if($xsql1){
+					while($rw=mysqli_fetch_array($xsql1)){
+						
+							$sql2 = "INSERT INTO `order_details` (`detail_id`, `order_header_id`, `product_id`, `quantity`, `price`, `sub_total`) VALUES (NULL, '".$id."', '".$product_id."', '".$quantity."', '".$rw['product_price']."','".($rw['product_price']*$quantity)."');";
+							$xsql2 = mysqli_query($conn, $sql2);
+							//$totalamount = $totalamount + ($rw['product_price'] *$quantity);		
+					} 
+					
+				}
+			  
+		  }//foreach($_SESSION['cart'] as $product_id => $quantity){
+
+		
+		
+		
+		
+		$status = 1;
+		unset($_SESSION['cart']);
+	}
+	
+}	
+/**
+end function submit order
+**/
+
+
+/**
+search_products($search_text) function
+**/
+function search_products($search_text){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from product where product_name like '%".strtolower($search_text)."%'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Product found";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['product_id'] = $rw['product_id'];
+							$status[2][$count]['product_name'] = $rw['product_name'];
+							$status[2][$count]['unit_of_measure'] = $rw['unit_of_measure'];
+							$status[2][$count]['product_description'] = $rw['product_description'];
+							$status[2][$count]['product_price'] = $rw['product_price'];
+							$status[2][$count]['category_id'] = $rw['category_id'];
+							$status[2][$count]['store_id'] = $rw['store_id'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error";
+					$status[3] = $sql;
+				}
+	return $status;
+	
+}
+/**
+end search_products($search_text) function
+**/
+
 ?>

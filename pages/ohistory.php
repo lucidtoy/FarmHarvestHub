@@ -112,7 +112,8 @@ this is the Dashboard account page
                  
                                     <p>
                     				<?php
-										echo 'Welcome ' . $_SESSION['user']['firstname'] . ' '. $_SESSION['user']['lastname'];
+										
+										
 									
 									
 									

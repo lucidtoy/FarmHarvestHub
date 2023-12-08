@@ -2,7 +2,7 @@
 /**
 Author: Solomon Oladokun
 Date: 27-Nov-2023
-Home Page
+Farm Page
 **/
 
 
@@ -22,6 +22,7 @@ Home Page
 						
 							if(isset($_GET['farm'])){
 								$farm_id = $_GET['farm'];
+								$_SESSION['farm'] = $farm_id;
 							}
 							else{
 								$farm_id = null;
@@ -108,7 +109,8 @@ Home Page
 									  
 									  if($cat[0]){
 										  foreach($cat[2] as $val){
-											  echo '<li><a href="?p=farm&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
+											  //echo '<li><a href="?p=farm&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
+											  echo '<li><a href="?p=farm&farm='.$farm_id.'&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
 										  }
 									  }
 								?>
@@ -129,7 +131,41 @@ Home Page
 							  foreach($products[2] as $val2){
 								  //echo '<li><a href="?p=farm&cat='.$val2['category_id'].'">'.$val2['category_name'].'</a></li>';
 								  
-								  
+							if(isset($_GET['cat'])){
+								if($val2['category_id']==$_GET['cat']){
+									
+									
+									echo '
+					<div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="img/product/'.$val2['product_id'].'.png">
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">'.$val2['product_name'].'</a></h6>
+                                    <h5>$'.$val2['product_price'].'</h5>
+									<form action="" method="post">
+									<input name="prodid" type="hidden" value="'.$val2['product_id'].'" />
+									<table align="center"><tr><td>
+									<select name="quantity">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select> &nbsp;</td><td> '.$val2['unit_of_measure'].'</td></tr></table><br/>
+									<input name="addtocart" type="submit" class="site-btn" value="Add to Cart" />
+									</form>
+                                </div>
+                            </div>
+                        </div>';
+							 
+						
+									
+									
+									
+								}
+							}else{	  
 					echo '
 					<div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
@@ -154,6 +190,8 @@ Home Page
                                 </div>
                             </div>
                         </div>';
+							}//end if category_id is set for filter
+
 							  }
 						}
 					?>
