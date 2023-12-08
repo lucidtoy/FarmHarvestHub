@@ -99,25 +99,27 @@ function headers(){
                     </div>
                     <div class="col-lg-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                              
-                            </div>
-                            <div class="header__top__right__language">
+                            
+                            
                                
                                 <?php
+								
 									if(isset($_SESSION['user']['user_id'])){
+										echo '<div class="header__top__right__language" style="border:0px solid #000;">';
 									echo '<a href="?p=account"><i class="fa fa-user"></i>('. $_SESSION['user']['firstname'] . ')</a>'; 
+									echo '</div>';
 									
 								}
 								?>
-                            </div>
-                            <div class="header__top__right__auth">
+                            
+                            <div class="header__top__right__auth" style="border:0px solid #000;">
                             <?php
 								if(isset($_SESSION['user']['user_id'])){
 									echo '<a href="?p=logout"><i class="fa fa-user"></i> Logout </a>';
 								}
 								else{
-									echo '<a href="?p=account"><i class="fa fa-user"></i> Login / Register</a>';	
+									echo '<a href="?p=account&reg=1">Login | Register </a>';
+									//echo '<a href="?p=account&reg=1"><i class="fa fa-user"></i> Login</a> | <a href="?p=account&reg=2"><i class="fa fa-user"></i>Register</a>';	
 								}
 							
 							?>

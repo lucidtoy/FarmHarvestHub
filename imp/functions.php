@@ -564,4 +564,158 @@ function search_products($search_text){
 end search_products($search_text) function
 **/
 
+
+
+
+/**
+get_my_farm_orders(($user_id) function
+**/
+function get_my_farm_orders($user_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from orders o, farm f, users u where o.ordered_from=f.farm_id and u.user_id=o.ordered_by and f.admin_id='".$user_id."' order by o.ordered_at desc";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Orders";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['order_id'] = $rw['order_id'];
+							$status[2][$count]['order_number'] = $rw['order_number'];
+							$status[2][$count]['total_amount'] = $rw['total_amount'];
+							$status[2][$count]['ordered_from'] = $rw['ordered_from'];
+							$status[2][$count]['ordered_by'] = $rw['firstname'].' '.$rw['lastname'];
+							$status[2][$count]['shipping_address'] = $rw['shipping_address'];
+							$status[2][$count]['shipping_city'] = $rw['shipping_city'];
+							$status[2][$count]['shipping_state'] = $rw['shipping_state'];
+							$status[2][$count]['ordered_at'] = $rw['ordered_at'];
+							$status[2][$count]['phone'] = $rw['phone'];
+							$status[2][$count]['email'] = $rw['email'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error, Contact administrator";
+					//$status[3] = $sql;
+				}
+	return $status;
+	
+}
+/**
+end get_my_farm_orders(($user_id) function
+**/
+
+
+/**
+get_order_details($order_id) function
+**/
+function get_order_details($order_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from order_details od, product p where p.product_id=od.product_id and order_header_id='".$order_id."'";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Order Detail";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['detail_id'] = $rw['detail_id'];
+							$status[2][$count]['product_id'] = $rw['product_id'];
+							$status[2][$count]['product_name'] = $rw['product_name'];
+							$status[2][$count]['price'] = $rw['price'];
+							$status[2][$count]['quantity'] = $rw['quantity'];
+							$status[2][$count]['sub_total'] = $rw['sub_total'];
+							$status[2][$count]['unit_of_measure'] = $rw['unit_of_measure'];
+							$status[2][$count]['product_description'] = $rw['product_description'];
+							$status[2][$count]['category_id'] = $rw['category_id'];
+							$status[2][$count]['store_id'] = $rw['store_id'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error, Contact administrator";
+					//$status[3] = $sql;
+				}
+	return $status;
+	
+}
+/**
+end get_order_details($order_id) function
+**/
+
+
+/**
+get_my_farm_orders(($user_id) function
+**/
+function get_my_orders($user_id){
+	global $conn;
+	$status[0] = false;
+	$status[1] = "";
+						//$status[1] = "Invalid Username and / or Password";
+	$sql = "select * from orders o, farm f, users u where o.ordered_from=f.farm_id and u.user_id=o.ordered_by and u.user_id='".$user_id."' order by o.ordered_at desc";
+				$xsql = mysqli_query($conn,$sql);
+				
+				
+				if($xsql){
+					if(mysqli_affected_rows($conn)==0){
+						$status[0] = false;
+						$status[1] = "No Orders";
+					}
+					else{
+						$count = 0;
+						$status[0] = true;
+						$status[1] = "success";
+						while($rw=mysqli_fetch_array($xsql)){
+							
+							$status[2][$count]['order_id'] = $rw['order_id'];
+							$status[2][$count]['order_number'] = $rw['order_number'];
+							$status[2][$count]['total_amount'] = $rw['total_amount'];
+							$status[2][$count]['ordered_from'] = $rw['ordered_from'];
+							$status[2][$count]['ordered_by'] = $rw['firstname'].' '.$rw['lastname'];
+							$status[2][$count]['shipping_address'] = $rw['shipping_address'];
+							$status[2][$count]['shipping_city'] = $rw['shipping_city'];
+							$status[2][$count]['shipping_state'] = $rw['shipping_state'];
+							$status[2][$count]['ordered_at'] = $rw['ordered_at'];
+							$status[2][$count]['phone'] = $rw['phone'];
+							$status[2][$count]['email'] = $rw['email'];
+							$count++;
+						}	
+					}
+				}
+				else{
+					$status[0] = false;
+					$status[1] = "Error, Contact administrator";
+					//$status[3] = $sql;
+				}
+	return $status;
+	
+}
+/**
+end get_my_orders(($user_id) function
+**/
+
 ?>

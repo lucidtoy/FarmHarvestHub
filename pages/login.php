@@ -5,7 +5,11 @@ Date: 27-Nov-2023
 Error Page
 **/
 
-
+if(isset($_GET['reg'])){
+	$reg = $_GET['reg'];
+}else{
+	$reg = 1;
+}
 ?>
 
  <section class="hero">
@@ -24,7 +28,9 @@ Error Page
             <div class="row">
             
             
-            
+            <?php
+            	if($reg==1){
+			?>
             	<div class="col-lg-5 col-md-6" style="border:0px solid #000;">
                 
                 
@@ -78,12 +84,20 @@ Error Page
                                 <!--class="btn btn-lg btn-danger btn-block"-->
                             </fieldset>
                         </form>
+                        <label>
+                                    <br/><br/>
+                           Don't have an account? <a href="?p=<?php echo $p;?>&reg=2">Register</a>
+                        </label>
                     </div>
                 </div>
                 </div><!--<div class="col-lg-5 col-md-6" style="border:0px solid #000;">-->
                 
+                <?php } ?>
                 
                 
+                <?php
+            	if($reg==2){
+				?>
                 <div class="col-lg-5 col-md-6" style="border:0px solid #000;">
                 
                 
@@ -173,11 +187,17 @@ Error Page
                                 <!--class="btn btn-lg btn-danger btn-block"-->
                             </fieldset>
                         </form>
+                        <br/>
+                        
+                        <label>
+                                    <br/><br/>
+                           Already have an account <a href="?p=<?php echo $p;?>&reg=1">Sign in</a>
+                        </label>
                     </div>
                 </div>
                 
                 </div><!--<div class="col-lg-5 col-md-6" style="border:0px solid #000;">-->
-            
+            <?php } ?>
             
             </div>
         </div>

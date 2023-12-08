@@ -116,7 +116,7 @@ this is the Dashboard account page
 										
 										
 										
-										$products = get_my_orders($_SESSION['user']['user_id']);
+										$products = get_my_farm_orders($_SESSION['user']['user_id']);
 						
 										//var_dump($products);
 										
