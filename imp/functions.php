@@ -161,7 +161,7 @@ $totalamount=0;
 
 if(!isset($_SESSION['cart'])){ $totalamount=0.00;}
 else{
-foreach($_SESSION['cart'] as $product_id => $valx){
+//foreach($_SESSION['cart'] as $product_id => $valx){
 		  
 		  foreach($_SESSION['cart'] as $product_id => $quantity){
 			  //$prod_det = fetch_prod($product_id);
@@ -178,7 +178,7 @@ foreach($_SESSION['cart'] as $product_id => $valx){
 			  
 		  }
 
-}
+//}
 }
 return number_format((float)($totalamount), 2, '.', '');	
 }
