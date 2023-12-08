@@ -31,7 +31,7 @@ require_once'imp/functions.php';
 	//page contents is processed here
 		$page_info = page_engine($links[0]);
 		$page_url = $page_info[3];
-		$page_title = " Farm Harvest Hub | ".$page_info[2]." ";
+		$page_title = "Harvest Hub Australia | ".$page_info[2]." ";
 		$access_level = $page_info[5];
 
 headers();
