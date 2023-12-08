@@ -215,4 +215,215 @@ function footers(){
     
     <?php
 }
+
+
+function checkout(){
+	?>
+    
+     <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Shipping Information</h3><br/>
+                        
+                    </div>
+                    <div class="panel-body">
+                    	
+                        <form role="form" action="" method="post">
+                            <fieldset>
+                                <div class="form-group">Shipping Name:
+                                    <input class="form-control" value="<?php echo $_SESSION['user']['firstname'] .' '.$_SESSION['user']['lastname'];?>" name="fullname" type="text" disabled>
+                                </div>
+                                <div class="form-group">Shipping Address:
+                                    <input class="form-control" name="address" placeholder="Address" value="<?php echo $_SESSION['user']['address'];?>" type="text">
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+                                    <div class="col-md-6 col-lg-6 col-xs-6">
+                                    City: 
+                                    <input class="form-control" placeholder="City" name="city" value="<?php echo $_SESSION['user']['city'];?>" type="text" required>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xs-6">
+                                    State:
+                                    <input class="form-control" placeholder="State" name="state" type="text" value="<?php echo $_SESSION['user']['state'];?>" required>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group"><br/>Billing:
+                                </div>
+                                <div class="row" style="border:0px solid #000;">
+                                
+                                
+                                
+                                <!--the card-->
+                                <div class="padding">
+<div class="row">
+<div class="card">
+<div class="card-header">
+<strong>Credit Card</strong>
+<small>enter your card details</small>
+</div>
+<div class="card-body">
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+    
+
+    
+<label for="name">Name</label>
+<input name="cardname" class="form-control" id="name" type="text" placeholder="Enter your name" required>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label for="ccnumber">Credit Card Number</label>
+
+
+<div class="input-group">
+<input name="card" class="form-control" type="card" placeholder="0000 0000 0000 0000" required>
+<div class="input-group-append">
+<span class="input-group-text">
+<i class="mdi mdi-credit-card"></i>
+</span>
+</div>
+</div> 
+</div>
+</div>
+
+<div class="row">
+<div class="form-group col-sm-4">
+<label for="ccmonth">Month</label><br/>
+<select name="ccmonth" class="form-control" id="ccmonth">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select>
+</div>
+<div class="form-group col-sm-4">
+<label for="ccyear">Year</label><br/>
+<select name="ccyear" class="form-control" id="ccyear">
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
+<option value="2026">2026</option>
+<option value="2027">2027</option>
+<option value="2028">2028</option>
+</select>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label for="cvv">CVV/CVC</label>
+<input name="cvv" class="form-control" id="cvv" type="text" placeholder="123" required>
+</div>
+</div>
+</div>
+
+</div>
+<div class="card-footer" style="padding:20px;">
+<button name="checkout_s" class="site-btn float-right" type="submit">
+<i class="mdi mdi-gamepad-circle"></i> Continue</button>
+<button class="btn btn-danger" type="reset">
+<i class="mdi mdi-lock-reset"></i> Reset</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+                                <!--end the card-->
+                                
+                                
+                                </div>
+                                
+                               
+                                 
+                                 <div class="form-group">
+                                 
+                                
+                                </div>
+                               
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+<?php
+}
+	
+	
+	
+function thecart_preview(){
+	global $conn;
+	global $cart_total;
+echo"<div class=\"panel panel-default\" style='width:100%'>
+                <div class=\"panel-heading\">
+                <h2><span class=\"glyphicon glyphicon-shopping-cart\"></span> Order</h2>
+                <!--<button type=\"button\" class=\"btn btn-primary btn-sm pull-right\">
+									<span class=\"glyphicon glyphicon-share-alt\"></span> Continue shopping
+								</button>-->
+                </div>
+                		
+                <div class=\"panel-body\">
+                    <form>
+                         <div class=\"form-group\">  ";
+						 if(isset($_SESSION['cart'])){
+						
+						
+						$lastitem = "";
+						$numofitems2 = 0; 
+						echo"<table border='0px' width='100%' align='center'>"; 
+						 foreach($_SESSION['cart'] as $productid => $quantity){
+							$lastitem = $productid;
+							$numofitems2 = $numofitems2 + $quantity;
+							$sql = mysqli_query($conn,"select * from product where product_id = '".$productid."'");
+							$rw = mysqli_fetch_array($sql);
+							 $price = $quantity * $rw['product_price'];
+							 echo"<tr width='100%'><td height='30px' width='50%'><img src='img/product/".$productid.".png' width='80px' height='80px'/>
+							 &nbsp;&nbsp;".$rw['product_name']."
+							 </td align='right'>
+							 <td>$".$rw['product_price']."</td>
+							 <td>X</td>
+							 <td>$quantity ".$rw['unit_of_measure']."</td>
+							 <td><p style=\"text-align: right;\">$".number_format((float)$price, 2, '.', '')."</p></td></tr>";
+						}
+						if($numofitems2<1){
+						echo"</table>";
+						echo"<center><b><h3>empty cart</h3></b></center>";
+						}
+						else{
+						echo"</table>";
+						}
+						
+						}else{
+							echo"<center><b><h3>empty cart</h3></b></center>";
+						}
+						
+						 
+						
+							 
+                        echo"</div>
+                    </form>
+                
+                </div>
+            <div class=\"panel-footer\">
+                <div>
+							<h4 class=\"text-right\">Total <strong id=\"ttotal\">$".$cart_total."</strong></h4>
+						</div>
+						
+            </div>
+                
+            </div>
+            <!--shoping cart-->
+            	
+            <!-- Shoing cart end-->";
+
+}
 ?>
