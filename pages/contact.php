@@ -10,16 +10,59 @@ this is the Dashboard account page
 ?>
                  
                     
-                    
-                    
- 
-<section class="hero">
+     <!-- Hero Section Begin -->
+    <section class="hero" style="margin-bottom:0px;">
         <div class="container">
             <div class="row">
-				<!--<h1>Login Page</h1>-->
-			</div>
+                <!--<div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>All departments</span>
+                        </div>
+                        <ul>
+                        <?php
+						
+						
+							$cat = category();
+							//var_dump($cat);
+							
+							if($cat[0]){
+								foreach($cat[2] as $val){
+									echo '<li><a href="?p=store&cat='.$val['category_id'].'">'.$val['category_name'].'</a></li>';
+								}
+							}
+						?>
+
+                        </ul>
+                    </div>
+                </div>-->
+                <div class="col-lg-12">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                             <form method="post" action="?p=search">
+                                <div class="hero__search__categories">
+                                    All Shops & Categories
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
+                                <input name="search" type="text" placeholder="What do yo u need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                       
+                    </div>
+                    
+            </div>
         </div>
- </section>
+    </section>
+    <!-- Hero Section End -->     
+     
+     
+     
+                    
+                    
+
+
 
 
 
