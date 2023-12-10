@@ -2,7 +2,7 @@
 /**
 Author: Solomon Oladokun
 Date: 27-Nov-2023
-Error Page
+Login Page
 **/
 
 if(isset($_GET['reg'])){
@@ -114,7 +114,7 @@ if(isset($_GET['reg'])){
 							$phone_number = mysqli_real_escape_string($conn,$_POST['phone_number']);
 							$user_type_id = mysqli_real_escape_string($conn,$_POST['user_type_id']);
 							$register = register($email, $cpassword, $vpassword, $firstname, $lastname, $phone_number, $user_type_id);
-							var_dump($register);
+							//var_dump($register);
 							//echo "$register[0] : $login[1]";
 							if($register[0]=='true'){
 								
